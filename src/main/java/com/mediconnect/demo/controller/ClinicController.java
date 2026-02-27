@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/clinic")
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"${cross.origin.value}", "${cross.origin.localhost.value}"},allowCredentials = "true")
+//@CrossOrigin(origins = {"${cross.origin.value}", "${cross.origin.localhost.value}"},allowCredentials = "true")
+@CrossOrigin(origins = "${cross.origin.value}")
 public class ClinicController
 {
     private final ClinicService clinicService;
