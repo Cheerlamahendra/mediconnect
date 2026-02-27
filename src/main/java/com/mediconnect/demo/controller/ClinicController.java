@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/clinic")
 @RequiredArgsConstructor
 //@CrossOrigin(origins = {"${cross.origin.value}", "${cross.origin.localhost.value}"},allowCredentials = "true")
-@CrossOrigin(origins = "${cross.origin.value}")
+@CrossOrigin(origins="${cross.origin.value}")
 public class ClinicController
 {
     private final ClinicService clinicService;

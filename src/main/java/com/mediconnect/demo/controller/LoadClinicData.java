@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 //@CrossOrigin(origins = {"${cross.origin.value}", "${cross.origin.localhost.value}"},allowCredentials = "true")
-@CrossOrigin(origins = "${cross.origin.value}")
+@CrossOrigin(origins="${cross.origin.value}")
 public class LoadClinicData
 {
     @Autowired
