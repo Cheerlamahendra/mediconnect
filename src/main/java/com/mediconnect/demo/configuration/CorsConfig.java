@@ -19,7 +19,8 @@ public class CorsConfig {
         config.setAllowedOrigins(Arrays.asList(
                 "http://localhost:3000",
                 "http://10.26.3.76:3000",
-                "https://medi-connect-sigma-six.vercel.app"
+                "https://medi-connect-sigma-six.vercel.app",
+                "https://medi-connect-anand-s-projects-e20be6d4.vercel.app"
         ));
         config.setAllowedHeaders(Arrays.asList("*"));
         config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
