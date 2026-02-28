@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +21,21 @@ public class AppointmentServiceImpl implements AppointmentService {
     private final ClinicRepository clinicRepository;
     private final DoctorRepository doctorRepository;
     private final PaymentService paymentService;
+
+    @Override
+    public List<Appointment> getAppointmentsByDoctorId(int doctorId) {
+        return appointmentRepository.findByDoctorId(doctorId);
+    }
+
+    @Override
+    public List<Appointment> getAppointmentsByPatientId(int patientId) {
+        return appointmentRepository.findByPatientId(patientId);
+    }
+
+    @Override
+    public List<Appointment> getAppointmentsByClinicId(int clinicId) {
+        return appointmentRepository.findByClinicId(clinicId);
+    }
 
     @Override
     public AppointmentResponseDTO bookAppointment(AppointmentRequestDTO requestDTO) {
@@ -90,4 +106,5 @@ public class AppointmentServiceImpl implements AppointmentService {
                 .message("Appointment processed")
                 .build();
     }
+
 }

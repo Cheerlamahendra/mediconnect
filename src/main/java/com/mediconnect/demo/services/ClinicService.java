@@ -2,10 +2,11 @@ package com.mediconnect.demo.services;
 
 import com.mediconnect.demo.requestDTO.ClinicLoginDTO;
 import com.mediconnect.demo.requestDTO.ClinicRequestDTO;
+import com.mediconnect.demo.responseDTO.ClinicResponseDTO;
 
-public interface ClinicService
-{
-    boolean registerClinic(ClinicRequestDTO requestDTO);
+public interface ClinicService {
 
-    boolean loginClinic(ClinicLoginDTO loginDTO);
+    ClinicResponseDTO registerClinic(ClinicRequestDTO requestDTO);
+
+    ClinicResponseDTO loginClinic(ClinicLoginDTO loginDTO);
 }

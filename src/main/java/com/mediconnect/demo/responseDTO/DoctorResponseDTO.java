@@ -12,7 +12,7 @@ public class DoctorResponseDTO
     private Long id;
     private String doctorName;
     private String specialization;
-    private Integer experience;
+    private int experience;
     private Double consultationFee;
 
 }

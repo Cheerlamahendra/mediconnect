@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, Long>
 {
@@ -13,4 +14,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long>
             LocalDate appointmentDate,
             LocalTime startTime
     );
+    List<Appointment> findByPatientId(int patientId);
+
+    List<Appointment> findByClinicId(int clinicId);
+    List<Appointment> findByDoctorId(int doctorId);
 }

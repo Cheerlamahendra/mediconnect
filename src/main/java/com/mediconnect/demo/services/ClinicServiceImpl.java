@@ -4,20 +4,21 @@ import com.mediconnect.demo.entityclasses.Clinic;
 import com.mediconnect.demo.repository.ClinicRepository;
 import com.mediconnect.demo.requestDTO.ClinicLoginDTO;
 import com.mediconnect.demo.requestDTO.ClinicRequestDTO;
+import com.mediconnect.demo.responseDTO.ClinicResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ClinicServiceImpl implements ClinicService
-{
+public class ClinicServiceImpl implements ClinicService {
+
     private final ClinicRepository clinicRepository;
 
     @Override
-    public boolean registerClinic(ClinicRequestDTO requestDTO) {
+    public ClinicResponseDTO registerClinic(ClinicRequestDTO requestDTO) {
 
         if (clinicRepository.findByMail(requestDTO.getMail()).isPresent()) {
-            return false;
+            return null;
         }
 
         Clinic clinic = Clinic.builder()
@@ -28,17 +29,30 @@ public class ClinicServiceImpl implements ClinicService
                 .password(requestDTO.getPassword())
                 .build();
 
-        clinicRepository.save(clinic);
+        Clinic savedClinic = clinicRepository.save(clinic);
 
-        return true;
+        return ClinicResponseDTO.builder()
+                .id(savedClinic.getId())
+                .hospitalName(savedClinic.getHospitalName())
+                .mail(savedClinic.getMail())
+                .contactNumber(savedClinic.getContactNumber())
+                .address(savedClinic.getAddress())
+                .build();
     }
 
     @Override
-    public boolean loginClinic(ClinicLoginDTO loginDTO) {
+    public ClinicResponseDTO loginClinic(ClinicLoginDTO loginDTO) {
 
         return clinicRepository.findByMail(loginDTO.getMail())
-                .map(clinic -> clinic.getPassword().equals(loginDTO.getPassword()))
-                .orElse(false);
+                .filter(clinic -> clinic.getPassword().equals(loginDTO.getPassword()))
+                .map(clinic -> ClinicResponseDTO.builder()
+                        .id(clinic.getId())
+                        .hospitalName(clinic.getHospitalName())
+                        .mail(clinic.getMail())
+                        .contactNumber(clinic.getContactNumber())
+                        .address(clinic.getAddress())
+                        .build()
+                )
+                .orElse(null);
     }
-
 }
